@@ -9,23 +9,6 @@
 
 ---
 
-## Demo & Preview
-
-> *[Placeholder: Insert `docs/snapfloat-demo.gif` or screenshot here showing `Win + Shift + S` capture sliding into the bottom-right corner and dragging directly into Discord / Chrome / File Explorer.]*
-
-```text
-+--------------------------------------------------+
-|                                             [×]  |
-|                                                  |
-|           [  Rounded Screenshot  ]               |
-|           [      Thumbnail       ]               |
-|                                                  |
-|   [ Copy ]  [ Open ]  [ Explorer ]        [ 🗑 ] |
-|======================================------------
-```
-
----
-
 ## Key Features
 
 - **Dual-Trigger Detection (`watchdog` + Qt Clipboard)**
@@ -81,7 +64,7 @@ snapfloat/
 ### 2. Installation
 
 ```powershell
-git clone https://github.com/yourusername/snapfloat.git
+git clone https://github.com/mertmirackaplan/snapfloat.git
 cd snapfloat
 python -m venv .venv
 .venv\Scripts\activate

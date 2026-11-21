@@ -114,6 +114,7 @@ class AppSettings:
     auto_dismiss_ms: int = AUTO_DISMISS_MS
     sound_enabled: bool = True
     mute_snipping_tool_notifications: bool = True
+    start_with_windows: bool = True
 
     @classmethod
     def settings_path(cls) -> Path:
@@ -137,6 +138,7 @@ class AppSettings:
                 mute_snipping_tool_notifications=bool(
                     data.get("mute_snipping_tool_notifications", True)
                 ),
+                start_with_windows=bool(data.get("start_with_windows", True)),
             )
         except Exception as exc:
             logger.warning("Failed to read settings from %s, using defaults: %s", path, exc)

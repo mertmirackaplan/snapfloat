@@ -51,10 +51,13 @@ class SnapFloatTrayController(QObject):
         self._settings = AppSettings.load()
         self._active_card: Optional[PreviewCard] = None
 
-        # Pre-generate macOS shutter WAV and apply Snipping Tool toast suppression
+        # Pre-generate macOS shutter WAV, apply Snipping Tool toast suppression,
+        # and auto-register in Windows startup by default (keeps exe path updated if moved)
         ensure_shutter_wav_path()
         if self._settings.mute_snipping_tool_notifications:
             set_snipping_notification_muted(True)
+        if self._settings.start_with_windows:
+            set_startup_enabled(True)
 
         # Initialize Dual-Trigger Watcher
         self._watcher = ScreenshotWatcher(paused=self._settings.monitoring_paused, parent=self)
@@ -184,7 +187,10 @@ class SnapFloatTrayController(QObject):
 
     def _on_toggle_startup(self, checked: bool) -> None:
         success = set_startup_enabled(checked)
-        if not success:
+        if success:
+            self._settings.start_with_windows = checked
+            self._settings.save()
+        else:
             # Revert checkmark if registry write failed
             self._act_startup.setChecked(is_startup_enabled())
 
